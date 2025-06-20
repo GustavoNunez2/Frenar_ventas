@@ -1,5 +1,11 @@
 # Frenar_ventas
 
+# 🚧 ¡EN DESARROLLO! 🚧
+
+Este proyecto se encuentra actualmente en desarrollo activo. Se esperan cambios frecuentes y la funcionalidad puede no estar completa o ser inestable.
+
+---
+
 Este es un proyecto Full-Stack para la gestión de productos, permitiendo listar, crear, editar y eliminar productos. El frontend está desarrollado con React.js y el backend utiliza PHP con MySQL.
 
 ## Estructura del Proyecto
