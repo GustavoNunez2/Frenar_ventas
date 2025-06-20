@@ -1,0 +1,23 @@
+/* src/components/Layout/Layout.css */
+
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+    transition: all 0.3s ease;
+    overflow-x: hidden; /* ¡Añade esta línea! Eliminará el scroll horizontal */
+    /* Asegúrate de que NO tenga 'overflow: hidden;' a secas, solo 'overflow-x: hidden;' */
+}
+
+.layout-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+    /* Asegúrate de que NO tenga 'position' ni 'z-index' aquí que puedan competir */
+}
+
+/* Clase para ajustar el margen cuando el sidebar está colapsado */
+.layout-content.collapsed-margin {
+    margin-left: 60px;
+}

@@ -1,0 +1,27 @@
+/* Estilos generales para la página Home/Dashboard */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas */
+  gap: 20px; /* Espacio entre las tarjetas */
+  margin-top: 20px;
+}
+
+.dashboard-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.dashboard-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.dashboard-card p {
+  font-size: 2em;
+  font-weight: bold;
+  color: #007bff; /* Un color de acento */
+}

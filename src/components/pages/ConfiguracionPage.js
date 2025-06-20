@@ -1,0 +1,12 @@
+import React from 'react';
+
+function ConfiguracionPage() {
+  return (
+    <div>
+      <h2>Gestión de Productos</h2>
+      <p>Aquí se listarán y gestionarán los productos.</p>
+    </div>
+  );
+}
+
+export default ConfiguracionPage;

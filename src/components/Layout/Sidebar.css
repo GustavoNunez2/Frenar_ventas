@@ -1,0 +1,339 @@
+/* src/components/Sidebar/Sidebar.css */
+
+.sidebar {
+    width: 250px; /* Ancho normal */
+    background-color: #2c3e50;
+    color: white;
+    padding: 0px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    position: relative; /* CRÍTICO: debe ser relative o absolute/fixed para que z-index funcione */
+    flex-shrink: 0;
+    overflow-y: unset;
+    z-index: 9999;/* ¡Añade o modifica esta línea! Asegura que el sidebar esté arriba */
+}
+
+/* Estilos para el sidebar colapsado */
+.sidebar.collapsed {
+    width: 60px; /* Ancho cuando está colapsado, ajusta según el tamaño de tu botón/iconos */
+}
+
+/* Tu logo-wrapper y estilos de logo/header */
+.logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centra horizontalmente */
+}
+
+.sidebar-logo {
+    width: 210px; /* Tu ancho modificado */
+    height: auto;
+    margin-bottom: -45px; /* Tu margen modificado */
+    display: block;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    display: flex; /* Para el logo/título y el botón */
+    justify-content: center; /* Centra el logo/título cuando no está colapsado */
+    align-items: center;
+    height: 140px; /* Tu altura modificada para el header */
+    overflow: visible;
+}
+
+.sidebar.collapsed .sidebar-header {
+    justify-content: center; /* Centra el botón cuando está colapsado */
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.sidebar.collapsed .sidebar-logo {
+    display: none; /* Oculta el logo cuando está colapsado */
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 2.5em; /* Tu tamaño de fuente modificado */
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+    overflow: hidden; /* Oculta cualquier desbordamiento */
+    padding-bottom: 21px; /* Tu padding modificado */
+}
+
+.sidebar.collapsed .sidebar-header h2 {
+    display: none; /* Oculta el título cuando está colapsado */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* --- Estilos para SidebarMenuItem (nuevos y actualizados) --- */
+.sidebar-menu-item {
+    position: relative; /* Para el posicionamiento del submenú */
+}
+
+.menu-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Para separar el texto/icono de la flecha */
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para el enlace principal dentro del menu-item-header */
+.menu-item-header .menu-link {
+    display: flex;
+    align-items: center;
+    color: white; /* Asegura que el color base del enlace sea blanco */
+    text-decoration: none;
+    flex-grow: 1; /* Para que ocupe el espacio y se alinee bien el toggle */
+}
+
+/* Anula los colores por defecto del navegador para todos los estados de enlace */
+/* Aplicado directamente al 'a' o 'Link' */
+.sidebar-nav a:link,
+.sidebar-nav a:visited,
+.sidebar-nav a:hover,
+.sidebar-nav a:active,
+.sidebar-menu-item .menu-item-header .menu-link:link,
+.sidebar-menu-item .menu-item-header .menu-link:visited,
+.sidebar-menu-item .menu-item-header .menu-link:hover,
+.sidebar-menu-item .menu-item-header .menu-link:active {
+    color: white; /* Fuerza el color blanco en todos estos estados */
+    text-decoration: none; /* Asegura que no haya subrayado */
+}
+
+.menu-item-header:hover,
+.sidebar-menu-item.active > .menu-item-header {
+    background-color: #34495e;
+}
+
+/* El borde izquierdo verde para el elemento activo */
+.sidebar-menu-item.active > .menu-item-header .menu-link {
+    border-left: 5px solid #1abc9c;
+    padding-left: 15px; /* Ajuste para el borde */
+    color: white; /* Importante para el texto del enlace cuando está activo */
+}
+
+.menu-icon {
+    margin-right: 15px;
+    font-size: 1.5em; /* Tamaño del icono */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Asegura que el icono sea blanco */
+}
+
+/* Apunta directamente al SVG del icono si no está en un span */
+.menu-icon svg {
+    color: white !important; /* Asegura color blanco para los iconos de menú principal */
+}
+
+.menu-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+    color: white; /* Asegura que el texto sea blanco */
+}
+
+/* Estilos para la flecha de toggle del submenú */
+.submenu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Asegura que la flecha o el espacio estén a la derecha */
+    width: 1.5em; /* Dale un ancho fijo para que no cambie la alineación */
+    flex-shrink: 0; /* Evita que se encoja */
+    font-size: 0.9em;
+    color: #bdc3c7; /* Color de las flechas del submenú */
+    transition: transform 0.3s ease;
+}
+
+/* Submenú */
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #3a506b; /* Un poco más claro que el sidebar principal */
+    max-height: 0; /* Por defecto colapsado */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* Transición suave para el desplegable */
+}
+
+.submenu.open {
+    max-height: 500px; /* Suficientemente grande para contener los elementos */
+    transition: max-height 0.3s ease-in;
+}
+
+.submenu-item a {
+    display: flex;
+    align-items: center;
+    color: white; /* Asegura que el color del enlace del submenú sea blanco */
+    text-decoration: none;
+    padding: 8px 20px 8px 40px; /* Padding adicional para indentar el submenú */
+    transition: background-color 0.2s ease;
+}
+
+.submenu-item a:hover,
+.submenu-item.active a {
+    background-color: #4a6582; /* Color al pasar el mouse o activo en el submenú */
+    color: white; /* Asegura que el color del enlace del submenú sea blanco al hover/activo */
+}
+
+.submenu-item.active a {
+    border-left: 3px solid #1abc9c; /* Borde activo para el submenú */
+    padding-left: 37px; /* Ajuste para el borde */
+}
+
+.submenu-icon {
+    margin-right: 10px;
+    font-size: 0.8em; /* Más pequeño para submenús */
+    color: #bdc3c7; /* Color de los íconos del submenú */
+}
+/* Asegura que el SVG dentro de submenu-icon sea del color correcto */
+.submenu-icon svg {
+    color: #bdc3c7;
+}
+
+.submenu-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white; /* Asegura que el texto del submenú sea blanco */
+}
+
+
+/* --- Estilos cuando el sidebar está colapsado (nuevos y actualizados) --- */
+.sidebar.collapsed .menu-item-header {
+    justify-content: center; /* Centra el icono */
+    padding: 12px 0; /* Padding solo para los lados */
+}
+
+.sidebar.collapsed .menu-item-header .menu-link {
+    justify-content: center; /* Centra el icono del enlace */
+    padding: 0; /* Elimina el padding del enlace */
+}
+
+.sidebar.collapsed .menu-item-header:hover,
+.sidebar.collapsed .sidebar-menu-item.active > .menu-item-header {
+    background-color: #34495e;
+}
+
+.sidebar.collapsed .sidebar-menu-item.active > .menu-item-header .menu-link {
+    border-left: 3px solid #1abc9c; /* Borde más pequeño */
+    padding-left: 0; /* Sin padding extra */
+    color: white; /* Asegura que el texto del enlace activo colapsado sea blanco */
+}
+
+.sidebar.collapsed .menu-icon {
+    margin-right: 0; /* Sin margen a la derecha del icono */
+}
+/* Asegura que los iconos estén blancos incluso colapsados */
+.sidebar.collapsed .menu-icon,
+.sidebar.collapsed .menu-icon svg {
+    color: white !important; /* Asegura color blanco para iconos colapsados */
+}
+
+.sidebar.collapsed .menu-text {
+    display: none; /* Oculta el texto */
+}
+
+.sidebar.collapsed .submenu-toggle {
+    display: none; /* Oculta la flecha de toggle cuando está colapsado */
+}
+
+/* Estilos para el submenú cuando el sidebar está colapsado (flotante) */
+.sidebar.collapsed .submenu {
+    position: absolute; /* Para que el submenú "flote" */
+    left: 100%; /* Posiciona el submenú a la derecha del sidebar colapsado */
+    top: 0; /* Alinea con el elemento principal */
+    width: 200px; /* Ancho del submenú flotante */
+    background-color: #3a506b;
+    border-radius: 0 5px 5px 0; /* Bordes redondeados solo a la derecha */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+    max-height: none; /* Permite que se muestre */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* Necesario para alinear correctamente con el item padre */
+    transform: translateY(-50%);
+}
+
+/* Solo se muestra cuando el item principal está hover o abierto */
+.sidebar.collapsed .sidebar-menu-item.has-submenu:hover > .submenu,
+.sidebar.collapsed .sidebar-menu-item.has-submenu.active > .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Vuelve a la posición original */
+}
+
+.sidebar.collapsed .submenu-item a {
+    padding: 8px 15px; /* Padding ajustado para el submenú flotante */
+    justify-content: flex-start; /* Alinea el texto a la izquierda */
+    color: white; /* Asegura el color blanco para los enlaces de submenú flotantes */
+}
+
+.sidebar.collapsed .submenu-item a:hover,
+.sidebar.collapsed .submenu-item.active a {
+    border-left: 3px solid #1abc9c;
+    padding-left: 12px;
+    background-color: #4a6582; /* Color al pasar el mouse o activo en el submenú flotante */
+    color: white; /* Asegura el color blanco para los enlaces de submenú flotantes */
+}
+
+.sidebar.collapsed .submenu-icon {
+    margin-right: 10px;
+    color: #bdc3c7; /* Color de los íconos del submenú colapsado */
+}
+/* Asegura que el SVG dentro de submenu-icon sea del color correcto */
+.sidebar.collapsed .submenu-icon svg {
+    color: #bdc3c7;
+}
+
+/* Estilos para el botón de toggle */
+.toggle-button {
+    position: absolute;
+    top: 15px;
+    right: -15px; /* Mantén esto si quieres que sobresalga */
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    z-index: 1001; /* Lo mantenemos, aunque el z-index del padre es clave */
+}
+
+.toggle-button:hover {
+    background-color: #16a085;
+}
+
+/* Esta regla es CRÍTICA para el color y tamaño del icono SVG de react-icons */
+.toggle-button svg {
+    color: white !important; /* Fuerza el color blanco del SVG, ¡muy importante! */
+    font-size: 1.4em; /* Aumenta el tamaño del icono para que sea más visible */
+    display: block; /* Asegura que ocupe su propio espacio */
+}
+
+/* ESTA ES LA ÚNICA REGLA NUEVA/MODIFICADA PARA ALINEAR HOME, VENDEDOR Y CONFIGURACIÓN */
+/* Aplicamos flex-start solo a los ítems que no tienen un submenu-toggle */
+.sidebar:not(.collapsed) .sidebar-menu-item:not(.has-submenu) .menu-item-header {
+    justify-content: flex-start; /* Alinea a la izquierda los ítems sin submenú */
+}
+
