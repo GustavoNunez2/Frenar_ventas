@@ -24,6 +24,14 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado lo siguiente:
 -   **MySQL** (o MariaDB)
 -   Un servidor web como **Apache** (comúnmente incluido en paquetes como XAMPP o WAMP para Windows, o LAMP para Linux).
 
+## Dependencias Clave del Frontend
+
+Además de las dependencias estándar de React, este proyecto utiliza las siguientes bibliotecas para funcionalidades específicas:
+
+-   **React Icons**: Para la inclusión de iconos personalizables en la interfaz de usuario.
+    (Puedes instalarla con: `npm install react-icons --save`)
+-   [Añade aquí cualquier otra biblioteca importante si la usas, por ejemplo, un Date Picker, un componente de tablas avanzado, etc.]
+
 ## Configuración y Ejecución del Backend (PHP)
 
 1.  **Base de Datos MySQL:**
