@@ -30,7 +30,6 @@ Además de las dependencias estándar de React, este proyecto utiliza las siguie
 
 -   **React Icons**: Para la inclusión de iconos personalizables en la interfaz de usuario.
     (Puedes instalarla con: `npm install react-icons --save`)
--   [Añade aquí cualquier otra biblioteca importante si la usas, por ejemplo, un Date Picker, un componente de tablas avanzado, etc.]
 
 ## Configuración y Ejecución del Backend (PHP)
 
