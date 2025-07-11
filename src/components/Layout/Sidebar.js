@@ -31,14 +31,6 @@ function Sidebar({ isCollapsed, toggleSidebar }) {
       ],
     },
     {
-      title: 'Compras',
-      icon: <FaChartBar />,
-      submenu: [
-        { title: 'Lista de Compras', path: '/compras/lista', icon: '●' },
-        { title: 'Crear Compra', path: '/compras/crear', icon: '●' },
-      ],
-    },
-    {
       title: 'Reportes',
       icon: <FaCog />, // Usa un ícono diferente para Reportes si FaCog ya está en Configuración
       submenu: [
